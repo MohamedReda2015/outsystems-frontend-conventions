@@ -1,0 +1,38 @@
+name: Release
+
+# Push a tag like v1.0.0 to publish a GitHub release with an installable skill archive
+# (outsystems-frontend-conventions.zip, SKILL.md at the top level: ready for Claude.ai / Claude Desktop upload).
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm test
+      - name: Check the tag matches SKILL.md and package.json
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          grep -q "version: ${TAG}$" SKILL.md || { echo "SKILL.md metadata.version is not ${TAG}"; exit 1; }
+          node -e "if (require('./package.json').version !== '${TAG}') { console.error('package.json version is not ${TAG}'); process.exit(1) }"
+      - name: Build the skill archive
+        run: |
+          mkdir -p dist/outsystems-frontend-conventions
+          cp -r SKILL.md README.md LICENSE THIRD_PARTY_NOTICES.md CHANGELOG.md references templates scripts adapters docs dist/outsystems-frontend-conventions/
+          (cd dist && zip -r ../outsystems-frontend-conventions.zip outsystems-frontend-conventions)
+          (cd dist/outsystems-frontend-conventions && zip -r ../../outsystems-frontend-conventions-flat.zip .)
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          awk -v v="${GITHUB_REF_NAME#v}" 'index($0, "## [" v "]") == 1 {f=1; next} /^## \[/ {f=0} f' CHANGELOG.md > notes.md
+          test -s notes.md || { echo "No CHANGELOG section for ${GITHUB_REF_NAME}"; exit 1; }
+          gh release create "$GITHUB_REF_NAME" outsystems-frontend-conventions.zip outsystems-frontend-conventions-flat.zip --title "$GITHUB_REF_NAME" --notes-file notes.md

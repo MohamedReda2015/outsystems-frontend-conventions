@@ -1,0 +1,29 @@
+name: Bug / inaccuracy
+description: A rule is wrong or outdated, or a script misbehaves
+labels: ["bug"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Where
+      description: File and rule ID (e.g. references/lifecycle-and-events.md, LCY-03) or script name (lint-os-js, check-names).
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is wrong
+      description: What it says now, what it should say, and the platform (O11 Reactive, Mobile, ODC) and Platform Server version if relevant.
+    validations:
+      required: true
+  - type: input
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Link to official documentation (success.outsystems.com or OutSystems/docs-product), a product update, or a reproducible example.
+  - type: textarea
+    id: repro
+    attributes:
+      label: Script reproduction (if a script bug)
+      description: The JavaScript file or inventory JSON (with neutral names), the command and the output.
+      render: shell

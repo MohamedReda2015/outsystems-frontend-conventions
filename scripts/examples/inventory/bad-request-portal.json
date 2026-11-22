@@ -1,0 +1,220 @@
+{
+  "modules": [
+    {
+      "name": "RequestPortal",
+      "layer": "FrontEnd",
+      "uiFlows": [
+        {
+          "name": "MainFlow",
+          "screens": [
+            {
+              "name": "Splash",
+              "title": "Loading",
+              "roles": [
+                "RequestViewer"
+              ],
+              "isSplash": true,
+              "dataSources": [
+                {
+                  "name": "GetAppSettings",
+                  "kind": "dataAction",
+                  "fetch": "AtStart"
+                }
+              ]
+            },
+            {
+              "name": "Screen1",
+              "title": "Home",
+              "roles": [
+                "Registered"
+              ]
+            },
+            {
+              "name": "RequestDetailsPage",
+              "roles": [
+                "RequestViewer"
+              ],
+              "inputParameters": [
+                {
+                  "name": "Request",
+                  "type": "Request Record"
+                },
+                {
+                  "name": "AuthToken",
+                  "type": "Text"
+                }
+              ],
+              "localVariables": [
+                {
+                  "name": "Saving",
+                  "type": "Boolean"
+                },
+                {
+                  "name": "Request",
+                  "type": "Request Identifier"
+                }
+              ],
+              "dataSources": [
+                {
+                  "name": "Aggregate1",
+                  "kind": "aggregate",
+                  "fetch": "AtStart"
+                },
+                {
+                  "name": "LoadComments",
+                  "kind": "dataAction",
+                  "fetch": "AtStart",
+                  "inputs": [
+                    "UserId"
+                  ],
+                  "onAfterFetch": "LoadCommentsOnAfterFetch"
+                }
+              ],
+              "actions": [
+                {
+                  "name": "Action1",
+                  "serverCalls": [
+                    "GetKpiSummary",
+                    "GetMyRequests"
+                  ],
+                  "localStorage": true
+                },
+                {
+                  "name": "SaveOnClickCopy",
+                  "serverCalls": [
+                    "ValidateRequest",
+                    "SaveRequest"
+                  ],
+                  "entityActions": [
+                    "CreateOrUpdateRequest"
+                  ]
+                },
+                {
+                  "name": "SyncHeaderOnRender",
+                  "assignsData": true
+                },
+                {
+                  "name": "LoadCommentsOnAfterFetch",
+                  "refreshes": [
+                    "LoadComments"
+                  ]
+                },
+                {
+                  "name": "OnSave"
+                }
+              ],
+              "lifecycle": {
+                "OnInitialize": "Action1",
+                "OnRender": "SyncHeaderOnRender"
+              }
+            },
+            {
+              "name": "RequestList",
+              "title": "Requests",
+              "roles": [
+                "RequestViewer"
+              ]
+            },
+            {
+              "name": "RequestEdit",
+              "title": "Edit request",
+              "roles": [
+                "RequestEditor"
+              ]
+            },
+            {
+              "name": "ApprovalInbox",
+              "title": "Approvals",
+              "roles": [
+                "Approver"
+              ]
+            },
+            {
+              "name": "ApprovalDetail",
+              "title": "Approval",
+              "roles": [
+                "Approver"
+              ]
+            },
+            {
+              "name": "ReportsDashboard",
+              "title": "Reports",
+              "roles": [
+                "Manager"
+              ]
+            },
+            {
+              "name": "SettingsEdit",
+              "title": "Settings",
+              "roles": [
+                "Admin"
+              ]
+            },
+            {
+              "name": "UserRoles",
+              "title": "User roles",
+              "roles": [
+                "Admin"
+              ]
+            },
+            {
+              "name": "AuditLogList",
+              "title": "Audit log",
+              "roles": [
+                "Admin"
+              ]
+            },
+            {
+              "name": "HelpCenter",
+              "title": "Help",
+              "roles": [
+                "Registered"
+              ],
+              "publicIntended": true
+            }
+          ],
+          "blocks": [
+            {
+              "name": "RequestCardBlock",
+              "public": true,
+              "insideList": true,
+              "dataSources": [
+                {
+                  "name": "GetRequestOwner",
+                  "kind": "dataAction"
+                }
+              ],
+              "events": [
+                {
+                  "name": "Clicked",
+                  "parameters": [
+                    {
+                      "name": "Request",
+                      "type": "Request Record"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "clientActions": [
+        {
+          "name": "Helper",
+          "public": true
+        }
+      ],
+      "clientVariables": [
+        {
+          "name": "UserRole",
+          "type": "Text"
+        },
+        {
+          "name": "AccessToken",
+          "type": "Text"
+        }
+      ]
+    }
+  ]
+}

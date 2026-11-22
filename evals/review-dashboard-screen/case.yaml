@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: review-dashboard-screen
+context:
+  scaffold_script: place-files.sh
+expected_outcome: |
+  review.md lists findings with rule IDs and severities, most severe first. It flags: the server action calls in
+  OnInitialize (FET-01 / PERF-08) with a parallel data-action fix; the empty state not gated on IsDataFetched
+  (FET-03); the user id passed from the client (SEC-09 / FET-04); the AuthToken client variable (STA-04); the
+  AllExceptions message shown to users (ERR-01); the missing double-submit guard (CLG-03); and the JavaScript
+  problems (hard-coded generated id, global, innerHTML, listener never removed). It gives concrete fixes.
+---
+tags: [outsystems-frontend-conventions]
+max_turns: 25
+timeout_seconds: 600
+allowed_tools: [Read, Glob, Grep, Skill, Write, Edit, Bash]

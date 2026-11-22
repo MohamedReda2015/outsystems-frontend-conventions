@@ -1,0 +1,1 @@
+I need a reusable "request form" in our OutSystems reactive app (Request_CW module) that's used on both the New Request and Edit Request screens. fields: title, type (dropdown), due date, description, attachments. how should I build it? give me the block design, the variables/params/events and the save logic step by step. write it to design.md

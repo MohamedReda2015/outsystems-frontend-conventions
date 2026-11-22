@@ -1,0 +1,55 @@
+{
+  "name": "outsystems-frontend-conventions",
+  "version": "1.1.0",
+  "description": "Agent-independent OutSystems frontend development conventions (O11 Reactive/Mobile, ODC): naming, block contracts, lifecycle, data fetching, state, client logic, forms, errors, JavaScript and frontend security, plus a JavaScript-node linter and a naming/inventory checker.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "MohamedReda2015",
+  "homepage": "https://github.com/MohamedReda2015/outsystems-frontend-conventions#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohamedReda2015/outsystems-frontend-conventions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MohamedReda2015/outsystems-frontend-conventions/issues"
+  },
+  "keywords": [
+    "outsystems",
+    "reactive",
+    "frontend",
+    "conventions",
+    "naming-conventions",
+    "code-review",
+    "javascript-lint",
+    "agent-skill",
+    "claude-skill",
+    "agents-md",
+    "odc",
+    "lowcode",
+    "best-practices"
+  ],
+  "bin": {
+    "os-lint-js": "scripts/lint-os-js.mjs",
+    "os-check-names": "scripts/check-names.mjs"
+  },
+  "scripts": {
+    "test": "node --test",
+    "lint:examples": "node scripts/lint-os-js.mjs scripts/examples/js || exit 0",
+    "names:examples": "node scripts/check-names.mjs scripts/examples/inventory/bad-request-portal.json || exit 0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "SKILL.md",
+    "references/",
+    "templates/",
+    "scripts/",
+    "adapters/",
+    "README.md",
+    "LICENSE",
+    "docs/",
+    "THIRD_PARTY_NOTICES.md"
+  ]
+}

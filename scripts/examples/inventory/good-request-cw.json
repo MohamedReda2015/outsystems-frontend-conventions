@@ -1,0 +1,194 @@
+{
+  "style": "ConceptThing",
+  "modules": [
+    {
+      "name": "Request_CW",
+      "layer": "CW",
+      "uiFlows": [
+        {
+          "name": "Requests",
+          "blocks": [
+            {
+              "name": "RequestTable",
+              "public": true,
+              "description": "Paged table of requests for the given filters. Raises OnSelected(RequestId).",
+              "inputParameters": [
+                {
+                  "name": "Status",
+                  "type": "Text"
+                },
+                {
+                  "name": "IsReadOnly",
+                  "type": "Boolean"
+                },
+                {
+                  "name": "RefreshToken",
+                  "type": "Integer"
+                }
+              ],
+              "localVariables": [
+                {
+                  "name": "StartIndex",
+                  "type": "Integer"
+                },
+                {
+                  "name": "SelectedIds",
+                  "type": "List of Request Identifier"
+                }
+              ],
+              "dataSources": [
+                {
+                  "name": "GetRequestsPage",
+                  "kind": "dataAction",
+                  "fetch": "AtStart",
+                  "inputs": [
+                    "Status",
+                    "StartIndex"
+                  ],
+                  "onAfterFetch": "GetRequestsPageOnAfterFetch"
+                }
+              ],
+              "actions": [
+                {
+                  "name": "PaginationOnNavigate"
+                },
+                {
+                  "name": "RowOnClick"
+                },
+                {
+                  "name": "OnParametersChanged",
+                  "refreshes": [
+                    "GetRequestsPage"
+                  ]
+                },
+                {
+                  "name": "GetRequestsPageOnAfterFetch"
+                }
+              ],
+              "events": [
+                {
+                  "name": "OnSelected",
+                  "parameters": [
+                    {
+                      "name": "RequestId",
+                      "type": "Request Identifier"
+                    }
+                  ]
+                }
+              ],
+              "lifecycle": {
+                "OnParametersChanged": "OnParametersChanged"
+              }
+            },
+            {
+              "name": "RequestCard",
+              "public": true,
+              "description": "One request summary card; data passed in by the parent list.",
+              "insideList": true,
+              "inputParameters": [
+                {
+                  "name": "RequestId",
+                  "type": "Request Identifier"
+                },
+                {
+                  "name": "Title",
+                  "type": "Text"
+                },
+                {
+                  "name": "StatusLabel",
+                  "type": "Text"
+                },
+                {
+                  "name": "ShowActions",
+                  "type": "Boolean"
+                }
+              ],
+              "events": [
+                {
+                  "name": "OnSelected",
+                  "parameters": [
+                    {
+                      "name": "RequestId",
+                      "type": "Request Identifier"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "RequestRejectPopup",
+              "public": true,
+              "description": "Asks for a rejection reason. Raises OnRejected(RequestId) or OnClose.",
+              "inputParameters": [
+                {
+                  "name": "RequestId",
+                  "type": "Request Identifier"
+                }
+              ],
+              "localVariables": [
+                {
+                  "name": "Reason",
+                  "type": "Text"
+                },
+                {
+                  "name": "IsSaving",
+                  "type": "Boolean"
+                }
+              ],
+              "actions": [
+                {
+                  "name": "RejectOnClick",
+                  "serverCalls": [
+                    "Request_Reject"
+                  ]
+                },
+                {
+                  "name": "CancelOnClick"
+                }
+              ],
+              "events": [
+                {
+                  "name": "OnRejected",
+                  "parameters": [
+                    {
+                      "name": "RequestId",
+                      "type": "Request Identifier"
+                    }
+                  ]
+                },
+                {
+                  "name": "OnClose"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "clientActions": [
+        {
+          "name": "ShowFeedback",
+          "public": true,
+          "description": "Shows a transient feedback message (Success, Error, Info, Warning).",
+          "folder": "UIHelpers"
+        },
+        {
+          "name": "MapErrorsToInputs",
+          "public": false,
+          "folder": "UIHelpers"
+        },
+        {
+          "name": "FormatFileSize",
+          "public": true,
+          "description": "Bytes to a localized KB/MB/GB string.",
+          "folder": "Formatting"
+        }
+      ],
+      "clientVariables": [
+        {
+          "name": "RequestListPageSize",
+          "type": "Integer"
+        }
+      ]
+    }
+  ]
+}

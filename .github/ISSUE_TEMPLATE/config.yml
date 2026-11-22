@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: OutSystems platform issue or vulnerability
+    url: https://success.outsystems.com/support/
+    about: Platform bugs and vulnerabilities belong with OutSystems Support, not this repository.
+  - name: General OutSystems questions
+    url: https://www.outsystems.com/forums/
+    about: Ask the OutSystems community forum.

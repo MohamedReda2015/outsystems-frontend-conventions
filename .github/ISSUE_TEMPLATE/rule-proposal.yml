@@ -1,0 +1,50 @@
+name: Rule proposal
+description: Propose a new frontend convention, best practice, checklist rule or lesson
+labels: ["rule-proposal"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What goes wrong in OutSystems frontends without this rule? (No client names or confidential details.)
+    validations:
+      required: true
+  - type: textarea
+    id: rule
+    attributes:
+      label: Proposed rule
+      description: The rule, written as an instruction, plus one sentence on why it matters.
+    validations:
+      required: true
+  - type: dropdown
+    id: group
+    attributes:
+      label: Group
+      options: [NAM - Naming, STR - Structure, BLK - Blocks and screens, NAV - Navigation, LCY - Lifecycle, FET - Data fetching, STA - State, CLG - Client logic, VAL - Forms and validation, ERR - Errors and feedback, JSC - JavaScript, FSC - Frontend security, FPF - Frontend performance, MOB - Mobile and offline, LOC - Multilingual, VER - Verification, FLL - Lesson learned]
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Suggested severity
+      options: [Blocker, Major, Minor]
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: Link to official OutSystems documentation (preferred) or a community source.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Applies to
+      multiple: true
+      options: [O11 Reactive Web, O11 Mobile, ODC, Traditional Web]
+  - type: dropdown
+    id: checkable
+    attributes:
+      label: Could a script check it?
+      options: [lint-os-js (JavaScript), check-names (inventory), No - review only]

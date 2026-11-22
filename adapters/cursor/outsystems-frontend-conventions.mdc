@@ -1,0 +1,12 @@
+---
+description: OutSystems frontend development conventions (O11 Reactive/Mobile, ODC) for naming, folders, block contracts, screen and block lifecycle, data fetching and state, client logic, forms and validation, errors and feedback, navigation, JavaScript nodes and frontend security. Apply when building, refactoring or reviewing OutSystems screens, blocks, client actions, data actions or JavaScript.
+globs: ["**/*.js", "**/*_CW*", "**/*_MCW*", "**/inventory*.json"]
+alwaysApply: false
+---
+
+Follow the OutSystems frontend conventions skill in `outsystems-frontend-conventions/` (copy that folder into the repository, or adjust the path).
+
+1. Read `outsystems-frontend-conventions/SKILL.md` first and do its Step 0 (platform, layer, what exists, naming style in AGENTS.md). Load only the `references/*.md` files the task needs.
+2. The core rules in `outsystems-frontend-conventions/adapters/core-rules.md` are always in force. Layers belong to `outsystems-architecture`; look and CSS to `outsystems-live-style-guide`.
+3. After writing JavaScript nodes, run `node outsystems-frontend-conventions/scripts/lint-os-js.mjs <files>` (OnReady and OnDestroy nodes of one block together) and fix every Blocker or Major finding.
+4. For reviews, cite rule IDs from `references/review-checklist.md`, and use `templates/frontend-review-report.md`.

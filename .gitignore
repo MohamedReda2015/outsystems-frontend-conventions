@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.zip
+*.skill
+evals/results/
+*-workspace/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Local-only list of client/project names the privacy test bans (never commit)
+.private-names
