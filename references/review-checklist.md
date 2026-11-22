@@ -45,6 +45,7 @@ Rules from the companion skills are cited by their own IDs (architecture: `HSE`,
 | STR-01 | Screens and blocks grouped into UI flows by concept; client actions in folders by kind; no flat lists | Minor | model |
 | STR-02 | Every UI flow has a purpose (concept or `Common`); no catch-all `MainFlow` with dozens of screens | Minor | names |
 | STR-03 | Only intended elements are Public; every public block and client action has a Description and a documented contract | Major | names, model |
+| STR-04 | Modules converted with **Convert to Reactive** get a cleanup pass: screen preparations → aggregates/data actions, session variables → server state or non-sensitive client variables, Traditional widgets → OutSystems UI patterns, and every server call the UI now makes reviewed as a public endpoint | Major | model |
 
 ## BLK: blocks and screens
 | ID | Rule | Sev | Check |
@@ -161,6 +162,7 @@ Rules from the companion skills are cited by their own IDs (architecture: `HSE`,
 | FPF-01 | Only visible data is fetched at start (guideline ≤ about 5 At-Start sources per screen) | Minor | browser, names |
 | FPF-02 | No re-render storms: no OnRender assignments, no heavy functions in bound expressions | Major | model, browser |
 | FPF-03 | Scripts and libraries are required only where used | Minor | model |
+| FPF-06 | Performance work starts from measurements (Performance Analytics where enabled, browser Performance and Network, screen-request logs) and reports numbers before and after | Minor | browser |
 
 ## MOB: Mobile and offline
 | ID | Rule | Sev | Check |

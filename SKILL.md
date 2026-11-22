@@ -3,11 +3,11 @@ name: outsystems-frontend-conventions
 description: Build, refactor and review OutSystems Reactive and Mobile screens, blocks, data actions, forms, client state and JavaScript in O11 or ODC. Includes naming and JavaScript checks. Use for frontend behavior, lifecycle and integration contracts; use the style-guide skill for visual design and accessibility details.
 license: MIT
 metadata:
-  version: 1.2.0
+  version: 1.3.0
   updated: "2026-11-22"
   platform: OutSystems 11 (Reactive Web, Mobile; Traditional Web notes) and ODC
   agent-independent: "true"
-  companion-skills: outsystems-architecture (modules, layers, server security); outsystems-backend-conventions (BL logic, ActionResult, exceptions); outsystems-live-style-guide (visual design, CSS, accessibility); outsystems-bpt and outsystems-cmf (process and case UIs)
+  companion-skills: outsystems-architecture (modules, layers, server security); outsystems-backend-conventions (BL logic, ActionResult, exceptions); outsystems-live-style-guide (visual design, CSS, accessibility); outsystems-bpt and outsystems-cmf (process and case UIs); outsystems-ai-mentor (end-to-end lifecycle orchestrator)
   sources: official OutSystems docs (OutSystems/docs-product), TrueChange warnings, community standards; see docs/assessment-2026-11.md
 ---
 
@@ -21,6 +21,7 @@ metadata:
 - Preserve the user's requested scope and existing authorization. Continue routine reversible work; a skill does not authorize publishing, dependency changes or production operations beyond that scope. Do not introduce phase-by-phase approval unless the user or environment requires it.
 - Prefer installed API signatures and version-matched official documentation. A repository development branch, community workaround or old project observation is evidence to investigate, not a release guarantee.
 - Report evidence separately: **prepared → model validated → merged → published → runtime verified**. A static checker passing proves only its covered checks on the supplied inventory. Unknown, blocked and not tested remain explicit.
+- Agent work through the Service Studio MCP follows the shared MCP reference in outsystems-architecture (its `service-studio-mcp` reference, rule `OPS-10`): confirm the environment with the user (the MCP can't report it) and stay in Development; one writer per module and a fresh edit session after any human edit or partial merge; read back every write and lay out its flows before merging; keep an agent change log; publish only on an explicit yes. For screens and blocks: new blocks are not public until `Public = Yes`; `IContainer` has no `OnClick` (use a Link or Button); client expressions can't call `Check<Role>Role()` (compute `Can*` flags on the server); test after a cache-clearing reload, because the browser keeps the old screen JavaScript.
 - Read [verification and reliability](references/verification-and-reliability.md) when changing data contracts, concurrent operations, runtime behavior or verification. It contains the concrete acceptance checks and sources for this skill.
 
 
@@ -39,6 +40,7 @@ It works for any agent (Claude, Copilot, Cursor, Codex, Gemini, a custom LLM age
 
 | Question | Skill |
 |---|---|
+| A whole app or feature delivered end to end — phases, gates, increments, which steps the O11 MCP can do and which are manual | **outsystems-ai-mentor** (orchestrates this skill and its companions) |
 | Which module, which layer, who may reference whom, how data and server security work | **outsystems-architecture** |
 | How it *looks*: tokens, theme, CSS, patterns, responsive, WCAG, RTL | **outsystems-live-style-guide** |
 | How the server side is written: BL use cases, `ActionResult`, exceptions, transactions, integrations | **outsystems-backend-conventions** |

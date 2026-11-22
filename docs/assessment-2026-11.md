@@ -90,3 +90,9 @@ See [verification and reliability](../references/verification-and-reliability.md
 
 ## 5. Addendum — third-party standards review (v1.2.0)
 Reviewed maiurnarendra/outsystems-ai-skills v0.14.1 (GitHub, MIT, 2026-11-22). Adopted, paraphrased: flow layout and labelling conventions for client and screen actions (`CLG-07`) and built-ins / List actions before loops and JavaScript (`CLG-08`). Not adopted: their naming details where this skill already has a house rule (e.g. handler naming `SaveOnClick` is kept).
+
+
+## November 2026 cross-skill review (v1.3.0)
+- OutSystems product updates: O11 MCP (read GA / write Beta), Traditional-to-Reactive conversion (GA), Performance Analytics for Reactive and Mobile (Beta, linked to Code Quality), OutSystems UI 3.0 (GA, 10 Nov 2026) — https://www.outsystems.com/product-updates
+- OutSystems/outsystems11-mcp official skill (contract 2; design notes on edit sessions, timeouts, approvals) — https://github.com/OutSystems/outsystems11-mcp
+- Generalized lessons from agent-driven O11 projects (Model API pitfalls, CSS deploy verification); no client details.

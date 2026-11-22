@@ -67,3 +67,8 @@ Architecture (one End-User module per app, `_MCW` per area, client-side `_MCS`) 
 - **Formats from the locale**: dates, numbers, currency through format helpers; never hard-code `dd/MM/yyyy` in many places (`LOC-03`).
 - **RTL**: handled by the theme and logical CSS (style guide `TXT-02`); JS that computes positions must respect `dir`.
 - Changing language: `SetCurrentLocale`, then reload data whose labels come from the server.
+
+
+## Converted and measured screens (November 2026 review)
+- **Convert to Reactive** (`STR-04`): the GA Service Studio option clones a Traditional module and converts it (producers before consumers). The clone works, but needs a cleanup pass: screen preparations become aggregates or data actions (fetch only what's shown, `FET-*`); session variables become server-side state or non-sensitive client variables (`STA-*`); Traditional widgets become OutSystems UI patterns; and because every aggregate, data action and server action the Reactive UI calls is a REST endpoint, add the server-side role and record checks the Traditional page never needed (`FSC-*`).
+- **Measure first** (`FPF-06`): Performance Analytics (Beta, manual activation) gives client, network and server breakdowns and APDEX scores for Reactive and Mobile apps, linked to Code Quality (formerly AI Mentor Studio) findings. Without it, use the browser Performance and Network tabs and the screen-request logs. Record numbers before and after a change.
