@@ -12,3 +12,6 @@ Thumbs.db
 
 # Local-only list of client/project names the privacy test bans (never commit)
 .private-names
+
+# Local-only house design profiles (client brands, screenshots): never commit or publish
+private/

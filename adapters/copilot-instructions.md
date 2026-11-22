@@ -11,6 +11,8 @@ When helping with OutSystems screens, blocks, client actions, data actions, form
 
 **Step 0**: platform and app type; the module's layer (Front-End → CW → BL → CS); what already exists (theme, layout, CW blocks, UIHelpers, feedback helper, `ActionResult` structure); the naming style in force (`ConceptThing` default or `Concept_Thing`). Reuse before creating.
 
+**House design profile**: if `private/design-profile/PROFILE.md` exists in the skill folder, apply it to every screen and block (approved tokens, theme stylesheet, page anatomy, screenshots). It sets values, not rules; a project AGENTS.md naming another design system wins. It is private: never copy it into public repositories.
+
 **Names**: English PascalCase; screens `<Concept><Purpose>` (`RequestList`, `RequestDetail`); blocks `<Concept><Thing>` (`RequestFilters`, `RequestRejectPopup`); handlers `<Trigger><Event>` (`SaveOnClick`); reusable client actions verb-first; data sources `Get<What>`; block events `On<Happened>` (`OnSaved`); booleans `Is/Has/Can/Show`; ids end in `Id`. Never `Screen1`, `Action1`, `Aggregate1`, `Copy`, `Temp`. Concept UI flows and kind folders, never flat lists.
 
 **Screens compose, blocks own**: screens = layout + CW blocks + parameters + handlers + navigation. Blocks have a contract (parameters in, events out, placeholders), are self-contained, never navigate or read screen state, refresh in `OnParametersChanged` (`RefreshToken` to force), and never fetch per list item.

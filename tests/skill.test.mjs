@@ -9,7 +9,8 @@ import { RULES as NAME_RULES } from '../scripts/check-names.mjs';
 
 const read = (f) => readFileSync(p(f), 'utf8');
 const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
-  if (['node_modules', '.git', 'dist'].includes(e.name)) return [];
+  // `private/` holds local-only design profiles (git-ignored, may contain client brands): never scanned or published.
+  if (['node_modules', '.git', 'dist', 'private'].includes(e.name)) return [];
   const full = join(dir, e.name);
   return e.isDirectory() ? walk(full) : [full];
 });

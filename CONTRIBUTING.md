@@ -16,7 +16,8 @@ Thanks for helping improve **outsystems-frontend-conventions**. This repository 
 4. **Explain the reason.** Agents follow rules better when they know *why*. One sentence of reasoning beats an all-caps MUST.
 5. **Agent-independent.** Plain Markdown and zero-dependency Node.js scripts. Agent-specific wording belongs only in `adapters/`.
 6. **Stay in scope.** Look and feel belong to `outsystems-live-style-guide`; modules, layers and server security to `outsystems-architecture`; server-side logic to `outsystems-backend-conventions`. Cite their rule IDs instead of restating them.
-7. **Keep SKILL.md small** (under 300 lines, enforced by a test). Details go into `references/`.
+7. **Never commit `private/`.** It holds local house design profiles (client brands, screenshots). Keep it git-ignored; describe only the generic mechanism in public files.
+8. **Keep SKILL.md small** (under 300 lines, enforced by a test). Details go into `references/`.
 
 ## Rule IDs
 - Every enforceable rule lives in `references/review-checklist.md` as `| ID | Rule | Severity | Check |`.

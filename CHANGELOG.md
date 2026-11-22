@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/). The version is also in the `metadata.version` field of `SKILL.md`.
 
+## [1.4.0] - 2026-11-22
+### Added
+- **Private house design profiles.** Step 0.6 of `SKILL.md` (and the compact core rules) tells agents to load `private/design-profile/PROFILE.md` when it exists and to apply that approved design (tokens, theme stylesheet, page anatomy, screenshots) to every screen and block. Design values come from the profile; rules still come from this skill and the style guide.
+- `private/` is git-ignored, skipped by the test suite and left out of releases, so client brands never reach the public repository. README and CONTRIBUTING describe the mechanism.
+
 ## [1.3.0] - 2026-11-22
 Cross-skill review: recent OutSystems changes (Convert to Reactive GA, Performance Analytics Beta, OutSystems UI 3.0 GA, Code Quality as the current name of AI Mentor Studio, O11 MCP contract 2 and governance) and lessons from agent-driven projects.
 - New rules: `STR-04`, `FPF-06`.

@@ -3,7 +3,7 @@ name: outsystems-frontend-conventions
 description: Build, refactor and review OutSystems Reactive and Mobile screens, blocks, data actions, forms, client state and JavaScript in O11 or ODC. Includes naming and JavaScript checks. Use for frontend behavior, lifecycle and integration contracts; use the style-guide skill for visual design and accessibility details.
 license: MIT
 metadata:
-  version: 1.3.0
+  version: 1.4.0
   updated: "2026-11-22"
   platform: OutSystems 11 (Reactive Web, Mobile; Traditional Web notes) and ODC
   agent-independent: "true"
@@ -59,6 +59,7 @@ Use the project's documented architecture, naming and design choices where suppo
 3. **What exists**: the theme and layout, CW blocks, UIHelpers, the feedback helper, the result structure, naming style already used. **Reuse before creating.**
 4. **The naming style in force**: `ConceptThing` (default) or `Concept_Thing`. One per project (`NAM-01`).
 5. **OutSystems UI version**: ask the style-guide skill (Step 0 there) before any CSS.
+6. **House design profile**: if `private/design-profile/PROFILE.md` exists in this skill's folder, read it now and apply it to every screen and block you build or restyle. It is the owner's **approved visual design** (tokens, theme stylesheet, page anatomy, component looks, screenshots) and sets the *values*; this skill and the style guide still set the *rules* (tokens over literals, states, accessibility, conventions). A project AGENTS.md that names a different design system wins. The profile is private and git-ignored: never copy its brand, screenshots or client names into public repositories, issues or docs.
 
 ## Core conventions (details in the references)
 
@@ -149,6 +150,7 @@ Official order: blocks' OnReady/OnRender run before their parent's; OnDestroy ru
 3. Build bottom-up: BL action exists → CW block with data action + contract → screen composes it.
 4. Name every element as you create it (rules above). Rename defaults (`Action1`, `Container3`) only for elements referenced in logic, CSS or tests.
 5. Wire states (loading, empty, error, saving), feedback and the exception handler before calling it done.
+   If a house design profile is present (Step 0.6), build with its theme classes and page anatomy, and compare the result with its screenshots before reporting.
 6. Lint JS (`scripts/lint-os-js.mjs`); lint CSS with the style-guide skill.
 7. Clear every **TrueChange** warning or justify it in the review.
 8. If you have a model inventory (JSON from the Service Studio MCP read tools or a hand list), run:
@@ -194,6 +196,7 @@ Read `references/lessons-learned.md` (FLL-*) first. Keep element keys when rebui
 | `references/lessons-learned.md` | before any real build or refactor (FLL-01…) |
 | `references/review-checklist.md` | any review, audit or "is this right?" question; maps TrueChange warnings to rules |
 | `docs/assessment-2026-11.md` | the sources (official docs repo, community) and the gap assessment behind v1.1 |
+| `private/design-profile/PROFILE.md` (local only, if present) | **any screen, block or styling work**: the approved house design, its theme stylesheet and screenshots |
 | `templates/block-contract.md` · `templates/frontend-review-report.md` · `templates/js-node-template.js` | new block; review report; new JS node |
 | `scripts/lint-os-js.mjs` | linting JavaScript nodes (`--json`) |
 | `scripts/check-names.mjs` | checking a module inventory: names, parameters, roles, titles (`--style`, `--json`) |

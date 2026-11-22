@@ -114,6 +114,10 @@ Blocker  LCY-07   RequestPortal › MainFlow › RequestDetailsPage › LoadComm
          Data source refreshed in its own On After Fetch: refreshes LoadComments inside its own On After Fetch (infinite loop)
 ```
 
+## Private house design profiles
+
+Teams with an approved visual design can give the skill a **local, private design profile**: put a `PROFILE.md` (plus a theme stylesheet, assets and reference screenshots) in `private/design-profile/` inside the installed skill. Step 0 of `SKILL.md` tells every agent to load it and apply it to all screens and blocks. The `private/` folder is git-ignored and excluded from tests and releases, so client brands never reach the public repository.
+
 ## Companion skills
 
 | Skill | Owns |
