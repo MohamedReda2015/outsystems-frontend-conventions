@@ -195,3 +195,5 @@ Read `references/lessons-learned.md` (FLL-*) first. Keep element keys when rebui
 | `templates/block-contract.md` · `templates/frontend-review-report.md` · `templates/js-node-template.js` | new block; review report; new JS node |
 | `scripts/lint-os-js.mjs` | linting JavaScript nodes (`--json`) |
 | `scripts/check-names.mjs` | checking a module inventory: names, parameters, roles, titles (`--style`, `--json`) |
+
+For requirement-to-runtime handoffs, also use the cross-skill acceptance section in [verification and reliability](references/verification-and-reliability.md); preserve source/story/criterion IDs and the tested application version.

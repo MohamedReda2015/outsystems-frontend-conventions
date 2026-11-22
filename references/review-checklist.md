@@ -214,3 +214,10 @@ These manual checks complement, rather than extend the claimed coverage of, the 
 | FRV-02 | Major | Use action-specific permissions and immutable IDs for required fields and assignee options. |
 | FRV-03 | Major | Handle stable result codes, conflicts and ambiguous command outcomes without duplicate retries. |
 | FRV-04 | Major | Verify lifecycle cleanup and runtime negative paths in addition to static validation. |
+
+## Cross-skill acceptance
+
+| ID | Severity | Rule | Check |
+|---|---|---|---|
+| FRV-05 | Major | Include provider/subject identity in client state and prevent mixed or stale dependent data. | Manual; verification-and-reliability reference. |
+| FRV-06 | Major | Verify action-specific field permissions and recovery across role, state, session and refresh transitions. | Manual; verify against the story acceptance cases. |

@@ -37,3 +37,11 @@ Use the style-guide accessibility checks for focus/error announcements, keyboard
 - [Official screen/block lifecycle](https://github.com/OutSystems/docs-product/blob/master/src/building-apps/ui/screens/screen-block-lifecycle-events.md): lifecycle responsibilities. The query-key/dirty-state patterns are engineering guidance for custom asynchronous work.
 - [Official Service Actions](https://success.outsystems.com/documentation/11/building_apps/reusing_and_refactoring/use_services_to_expose_functionality/): remote failure and transaction boundaries.
 - Anonymized prior-project observations reviewed 2026-11-22: a supervisor could act but could not enter the required reason; assignee filtering needed an ID added to the contract; published/runtime evidence lagged model changes; real source wiring risked leaving sample dependent cards. Verify the generalized acceptance cases above.
+
+### Evidence for real-data and permission transitions
+
+Treat mock/live mode, selected subject, filters and locale as part of the query identity when they affect output. When changing provider or subject, invalidate dependent blocks and discard prior responses; do not show a live header above unrelated mock details. Distinguish no data, not loaded, unavailable and not authorized. A missing permission must not appear as a successful empty search.
+
+Create a role × action × state matrix for the decision panel: action visibility, enabled state, required reason fields, confirmation and server outcome. Keep reason inputs available to the roles that can reassign or force-release even if ordinary edit permission is false. Use stable identifiers to exclude an existing assignee, not display labels.
+
+Acceptance includes subject/provider switching during an in-flight request, session expiry after load, stale permission rejection, and refresh after a successful write. Capture version and provider mode so a screenshot of an older or mocked screen is not used as proof of the new behavior. Use the appropriate [ODC UI testing approach](https://success.outsystems.com/documentation/outsystems_developer_cloud/testing_apps/web_ui_testing/) or O11 test strategy; these scenario choices are generalized project lessons.
