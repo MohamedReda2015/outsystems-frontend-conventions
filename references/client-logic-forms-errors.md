@@ -32,6 +32,22 @@ Rules:
 - **Client actions don't hold business rules** that must be true (`CLG-06`): calculations shown to the user may be duplicated on the client for responsiveness, but the server recomputes and wins.
 - Client-side **functions** (Function = Yes) must be pure and fast: no server calls, no side effects.
 
+### Flow layout and labels (`CLG-07`)
+- The happy path runs straight down from Start to End; **If: True goes down, False goes right**, and the False branch ends in its own End.
+- **For Each: the Cycle connector leaves to the right**; the body runs down on the right and the flow continues down when the cycle ends.
+- Straight vertical and horizontal connectors only; route around nodes with empty Assigns labelled `Dummy`.
+- Label Ifs as questions (`Is form valid?`) or Is/Has names, Switches by their subject, Assigns by what they set; never leave `If1` or `Assign1`. The same layout applies to server actions (backend skill).
+- Through the Service Studio MCP, lay out every new or changed flow before merging.
+
+### Built-ins before loops before JavaScript (`CLG-08`)
+1. An expression with built-in functions (`If()`, `Trim`, `FormatDateTime`, `TextToIntegerValidate`…).
+2. A client List action: `ListAny`, `ListAll`, `ListIndexOf`, `ListFilter`, `ListSort`, `ListDistinct`, `ListAppendAll`. Client and server actions don't offer exactly the same built-ins: check the System module for the action type.
+3. The aggregate or data action (filter, sort, calculated attributes on the server).
+4. Flow nodes.
+5. A JavaScript node, last (`JSC-*`).
+
+A For Each that only searches, checks or filters a list is replaced by a List action; a loop is for doing work on items. A choice between two values is `If(condition, a, b)` in one Assign.
+
 ### Client action folders and descriptions
 Module client actions go into folders by kind (`UIHelpers`, `Formatting`, `Validation`) with a Description stating inputs, outputs and side effects (`HSE-06`).
 

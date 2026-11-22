@@ -105,6 +105,8 @@ Rules from the companion skills are cited by their own IDs (architecture: `HSE`,
 | CLG-04 | Reusable client logic lives in CW `UIHelpers`, not copied across screens | Minor | model |
 | CLG-05 | Screen/client actions stay short (guideline ≤ 15 nodes, ≤ 3 nested Ifs) | Minor | model |
 | CLG-06 | No business rule exists only on the client | Major | model |
+| CLG-07 | Client and screen action flows are laid out and labelled: happy path straight down, If True down / False right, For Each cycle to the right, straight connectors (empty `Dummy` Assigns at corners), Ifs labelled as questions or Is/Has names, no default labels (`If1`, `Assign1`) | Minor | model |
+| CLG-08 | Built-ins before loops before JavaScript: expressions and client List actions (`ListAny`, `ListFilter`, `ListIndexOf`, `ListSort`…) before a For Each; a loop only does work on items, never just searches or filters; `If()` in one Assign for two-value choices; a JS node only for what the platform can't do | Minor | model, js |
 
 ## VAL: forms and validation
 | ID | Rule | Sev | Check |

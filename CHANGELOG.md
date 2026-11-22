@@ -1,22 +1,22 @@
 # Changelog
 
-## Unreleased — cross-skill delivery review (2026-11-22)
+All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/). The version is also in the `metadata.version` field of `SKILL.md`.
 
+## [1.2.0] - 2026-11-22
+Ideas adopted, after review, from a third-party OutSystems standards collection (maiurnarendra/outsystems-ai-skills, MIT; paraphrased).
+### Added
+- `CLG-07` client/screen action flow layout and labels; `CLG-08` built-ins and client List actions before loops, JavaScript last.
+- `references/client-logic-forms-errors.md` §1 sections for both rules; adapters updated.
+
+### Also in this release: cross-skill delivery review (2026-11-22)
 - Connected requirements, domain implementation and runtime evidence through stable IDs and versioned handoffs.
 - Added domain acceptance guidance, template evidence fields and sourced review checks.
 
-
-## Unreleased — reliability review (2026-11-22)
-
+### Also in this release: reliability review (2026-11-22)
 - Clarified platform facts versus house/project conventions and verification evidence.
 - Added domain-specific reliability guidance, source provenance and acceptance cases.
 - Added review/template checks and corrected over-broad or inconsistent claims.
 - Extended repository consistency checks to the new reliability rule IDs and aligned contributor guidance with the full checkout.
-
-
-All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/). The version is also in the `metadata.version` field of `SKILL.md`.
-
-## [Unreleased]
 
 ## [1.1.0] - 2026-11-22
 Research update. Sources: the official OutSystems documentation (read from the public `OutSystems/docs-product` repository), the TrueChange warnings reference, the OutSystems blog, the Synobsys public standards, OutSystems forum threads, and the companion skills. Full findings and sources: `docs/assessment-2026-11.md`.

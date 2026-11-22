@@ -3,7 +3,7 @@ name: outsystems-frontend-conventions
 description: Build, refactor and review OutSystems Reactive and Mobile screens, blocks, data actions, forms, client state and JavaScript in O11 or ODC. Includes naming and JavaScript checks. Use for frontend behavior, lifecycle and integration contracts; use the style-guide skill for visual design and accessibility details.
 license: MIT
 metadata:
-  version: 1.1.0
+  version: 1.2.0
   updated: "2026-11-22"
   platform: OutSystems 11 (Reactive Web, Mobile; Traditional Web notes) and ODC
   agent-independent: "true"
