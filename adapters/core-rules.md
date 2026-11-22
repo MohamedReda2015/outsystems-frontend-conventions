@@ -5,7 +5,7 @@ You are building, refactoring or reviewing OutSystems frontend code (O11 Reactiv
 - the `references/` files hold the details; read the relevant one before acting;
 - these core rules always apply.
 
-**Companions**: layers and server security → `outsystems-architecture`; BL logic, `ActionResult`, exceptions → `outsystems-backend-conventions`; look, tokens, CSS, accessibility → `outsystems-live-style-guide`; processes and case UIs → `outsystems-bpt`, `outsystems-cmf`. When they overlap, they win. Official docs and TrueChange warnings outrank old blog tips. Precedence: project conventions (AGENTS.md) > this standard > OutSystems defaults; flag (don't follow silently) any project rule that breaks a security or correctness rule.
+**Companions**: layers and server security → `outsystems-architecture`; BL logic, `ActionResult`, exceptions → `outsystems-backend-conventions`; look, tokens, CSS, accessibility → `outsystems-live-style-guide`; processes and case UIs → `outsystems-bpt`, `outsystems-cmf`. When they overlap, they win. Official docs and TrueChange warnings outrank old blog tips. Project conventions choose supported designs; this standard supplies defaults. Installed contracts determine runtime behavior; flag unresolved security or correctness conflicts.
 
 **Step 0**: platform and app type; the module's layer (Front-End → CW → BL → CS); what already exists (theme, layout, CW blocks, UIHelpers, feedback helper, `ActionResult` structure); the naming style in force (`ConceptThing` default or `Concept_Thing`). Reuse before creating.
 
@@ -34,3 +34,4 @@ You are building, refactoring or reviewing OutSystems frontend code (O11 Reactiv
 - run the app after a cache-clearing reload: happy path, empty, error, double-click Save, Back, deep link, phone and desktop. Report only what you saw.
 
 **Reviews**: cite rule IDs from `references/review-checklist.md` (NAM, STR, BLK, NAV, LCY, FET, STA, CLG, VAL, ERR, JSC, FSC, FPF, MOB, LOC, VER, FLL) and use `templates/frontend-review-report.md`.
+- Use `references/verification-and-reliability.md` for evidence and domain acceptance checks. Distinguish prepared, validated, merged, published and runtime verified; preserve task scope and existing authorization.

@@ -22,3 +22,5 @@ This workspace follows the **outsystems-frontend-conventions** skill. If the fol
 - Feedback helper: `ShowFeedback` in `<Module>_CW` › UIHelpers
 - Theme requires jQuery: yes/no
 - Exceptions to this standard (with reason and date):
+
+- Use `references/verification-and-reliability.md` for evidence and domain acceptance checks. Distinguish prepared, validated, merged, published and runtime verified; preserve task scope and existing authorization.

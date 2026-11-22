@@ -1,24 +1,35 @@
 ---
 name: outsystems-frontend-conventions
-description: OutSystems frontend development conventions for O11 Reactive Web, Mobile and ODC. Covers naming and folders for screens, blocks, actions, variables and events; block contracts (parameters, events, placeholders); the screen and block lifecycle (OnInitialize, OnReady, OnRender, OnParametersChanged, OnDestroy); data fetching and state (aggregates, data actions, fetch modes, IsDataFetched, client variables); client logic, forms and validation; errors and feedback; navigation; JavaScript nodes; frontend security, performance, mobile/offline and multilingual. Includes a JavaScript-node linter, a naming checker, templates and lessons from real projects. Use it whenever an agent builds, refactors, reviews or explains an OutSystems screen, block, client or screen action, data action, aggregate, form, popup or JavaScript node, even if the user only says "add a screen", "wire this button", "why is my list empty" or "clean up this module". Pairs with outsystems-live-style-guide and outsystems-architecture.
+description: Build, refactor and review OutSystems Reactive and Mobile screens, blocks, data actions, forms, client state and JavaScript in O11 or ODC. Includes naming and JavaScript checks. Use for frontend behavior, lifecycle and integration contracts; use the style-guide skill for visual design and accessibility details.
 license: MIT
 metadata:
   version: 1.1.0
-  updated: 2026-11-22
+  updated: "2026-11-22"
   platform: OutSystems 11 (Reactive Web, Mobile; Traditional Web notes) and ODC
-  agent-independent: true
+  agent-independent: "true"
   companion-skills: outsystems-architecture (modules, layers, server security); outsystems-backend-conventions (BL logic, ActionResult, exceptions); outsystems-live-style-guide (visual design, CSS, accessibility); outsystems-bpt and outsystems-cmf (process and case UIs)
   sources: official OutSystems docs (OutSystems/docs-product), TrueChange warnings, community standards; see docs/assessment-2026-11.md
 ---
 
 # OutSystems Frontend Conventions
 
+## Scope, evidence and consistency
+
+- Run bundled scripts from the skill directory or use absolute paths; do not assume they exist in the application checkout.
+- Establish O11/ODC, application type, installed component versions and the target environment from available evidence; ask only for information that changes the work.
+- Separate **platform facts**, **house defaults**, **project decisions** and **observed lessons**. Project conventions choose among supported designs; they cannot change runtime behavior. The FE/CW/BL/CS chain is an O11 house pattern, not an ODC requirement.
+- Preserve the user's requested scope and existing authorization. Continue routine reversible work; a skill does not authorize publishing, dependency changes or production operations beyond that scope. Do not introduce phase-by-phase approval unless the user or environment requires it.
+- Prefer installed API signatures and version-matched official documentation. A repository development branch, community workaround or old project observation is evidence to investigate, not a release guarantee.
+- Report evidence separately: **prepared → model validated → merged → published → runtime verified**. A static checker passing proves only its covered checks on the supplied inventory. Unknown, blocked and not tested remain explicit.
+- Read [verification and reliability](references/verification-and-reliability.md) when changing data contracts, concurrent operations, runtime behavior or verification. It contains the concrete acceptance checks and sources for this skill.
+
+
 This skill makes an agent write OutSystems frontend code the way a senior OutSystems tech lead expects to find it in review:
 - **predictable names and folders**, so anyone can find anything;
 - **blocks with explicit contracts** (parameters in, events out), screens that only compose;
-- **lifecycle events used for what they are for**, and data fetched in parallel, never in client events;
+- **lifecycle events used for what they are for**, with independent initial reads in data sources and explicit user-triggered commands;
 - **every state handled**: loading, empty, error, saving, success;
-- **forms validated twice** (client for UX, server for truth) with one result shape;
+- **forms validated twice** (client for UX, server for truth) with one documented result shape;
 - **JavaScript as the exception**, scoped, cleaned up and lint-clean;
 - **no trust in the client**: the browser is public code.
 
@@ -36,12 +47,9 @@ It works for any agent (Claude, Copilot, Cursor, Codex, Gemini, a custom LLM age
 
 When they overlap, the owner above wins. This skill cites their rule IDs (`HSE-03`, `PERF-08`, `TOK-01`, `A11Y-15`…) instead of restating them.
 
-## Precedence of rules
-1. **The project's own conventions** (its AGENTS.md, an architecture or naming doc already in force). Follow them, and say so.
-2. **This house standard.**
-3. **OutSystems defaults and official guidance** (official docs, TrueChange warnings, Code Quality / AI Mentor patterns). Where an older blog tip conflicts with the docs or a TrueChange warning, the docs and warnings win.
+## Applying conventions
 
-If a project rule conflicts with a **security** or **correctness** rule here (`FSC-*`, `FET-01`, `ERR-01`), flag it with the risk and ask. Never silently follow it and never silently rework already-built modules. Record the decision in the project's AGENTS.md.
+Use the project's documented architecture, naming and design choices where supported. Use this skill's house defaults when the project has no decision. Official documentation and installed contracts determine platform behavior; house preferences never override those facts. Record a consequential deviation and its reason. Escalate unresolved security, data-integrity or compatibility conflicts, not ordinary naming or layout choices.
 
 ## Step 0: establish context (before writing anything)
 1. **Platform and app type**: O11 Reactive, O11 Mobile, O11 Traditional Web (legacy; only the naming, security and JS rules apply) or ODC.
@@ -73,7 +81,7 @@ English, PascalCase, no abbreviations except agreed acronyms, no `Screen1`, `Blo
 - A screen = layout + CW blocks + parameters + event handlers + navigation. No business logic, no server calls of its own beyond what composition needs (`HSE-03`, `UI-01`).
 - A block declares a **contract**: input parameters (mandatory where it can't work without them), events (out), placeholders (slots). Document it with `templates/block-contract.md`.
 - A block **never** reads screen state, navigates to another module's screen, or reaches into a sibling block. It raises an event; the screen decides.
-- Blocks refresh on `OnParametersChanged`. Don't recreate a block to "refresh" it.
+- Blocks refresh affected sources on `OnParametersChanged`; compare the record/query key, protect unsaved edits and reject stale custom async results. Do not recreate a block merely to refresh it.
 
 ### 3. Lifecycle: each event has one job (`references/lifecycle-and-events.md`)
 | Event | Use it for | Never |

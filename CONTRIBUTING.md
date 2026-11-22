@@ -41,5 +41,9 @@ node scripts/check-names.mjs scripts/examples/inventory/good-request-cw.json
 - For a release, bump `metadata.version` in `SKILL.md` **and** `version` in `package.json` (semantic versioning: new rules = minor, wording fixes = patch, a changed meaning of existing IDs = major), then push a tag `vX.Y.Z`. The release workflow checks both versions and the changelog section, then attaches the installable zips.
 - If you changed `adapters/core-rules.md`, copy the same text into the marked block of `adapters/copilot-instructions.md` (a test compares them).
 
+## Reliability review guidance
+
+Use `FRV` for verification and reliability review rules. These are manual acceptance checks unless a script explicitly implements them. Keep platform facts, house conventions and observed project lessons distinct, and link primary sources from `references/verification-and-reliability.md`.
+
 ## Code of conduct
 By participating you agree to follow the [Code of Conduct](CODE_OF_CONDUCT.md).

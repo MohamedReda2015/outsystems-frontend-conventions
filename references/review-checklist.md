@@ -202,3 +202,15 @@ Service Studio already flags many of these rules. Treat every warning as a findi
 | Code Quality: inline JavaScript; CSS in screens; inline styles | UI-07, UI-04 |
 
 Wrapping a server call in another client action only hides it from the analyzer: the request still runs in the client event (forum consensus). Fix the design, not the detector.
+
+
+## Reliability and evidence (2026-11 review)
+
+These manual checks complement, rather than extend the claimed coverage of, the static scripts. Details and acceptance cases: [verification and reliability](verification-and-reliability.md).
+
+| ID | Severity | Rule |
+|---|---|---|
+| FRV-01 | Major | Protect query identity, stale async results and dirty state; do not mix mock and real dependent views. |
+| FRV-02 | Major | Use action-specific permissions and immutable IDs for required fields and assignee options. |
+| FRV-03 | Major | Handle stable result codes, conflicts and ambiguous command outcomes without duplicate retries. |
+| FRV-04 | Major | Verify lifecycle cleanup and runtime negative paths in addition to static validation. |

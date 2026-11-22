@@ -76,3 +76,8 @@ OutSystems publishes its product documentation as Markdown in the public reposit
 - The exact rule names of the current **Code Quality / AI Mentor** catalog weren't published in a readable form; the mapping uses TrueChange warning texts. Re-check when OutSystems publishes the catalog in `docs-product`.
 - ODC Studio warnings were not compared one by one with O11 TrueChange; the lifecycle and JS API are the same, but verify for ODC-only projects.
 - Re-read the itnext/Medium sources by hand if they become reachable, and add anything new as lessons.
+
+
+## Reliability review — 2026-11-22
+
+See [verification and reliability](../references/verification-and-reliability.md) for primary sources, provenance and acceptance cases. Platform facts are separated from house policy and anonymized project observations. A community mirror is not an official publication; installed contracts and version-matched official sources take precedence. Runtime claims were not retested in a live tenant during this documentation review.

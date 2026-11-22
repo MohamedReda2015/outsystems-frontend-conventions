@@ -23,7 +23,7 @@ SaveOnClick
 Exception handler (AllExceptions) → IsSaving = False → re-raise or ShowFeedback(generic) + log
 ```
 Rules:
-- **One server call per user action** (`CLG-01`, `PERF-15`). If you need two, the server needs one action that does both (one round-trip, one transaction).
+- **One server call per user action** (`CLG-01`, `PERF-15`). If you need two, the server needs one action that does both (one round-trip; one transaction only if its implementation has no remote or explicit commit boundaries).
 - **The client doesn't orchestrate business steps** (`CLG-02`): no "save header, then loop to save lines, then send email" in a client action. That is a BL use-case action.
 - **Double-submit guard** (`CLG-03`): an `IsSaving`/`IsBusy` local variable; the button is `Enabled = not IsSaving` and shows Button Loading (style guide `CMP-*`). Reset it on **every** exit path, including exceptions.
 - **Reusable client logic lives in CW `UIHelpers`** (`CLG-04`), not copied into screens: `ShowFeedback`, `ConfirmAction`, `MapErrorsToInputs`, formatting helpers.

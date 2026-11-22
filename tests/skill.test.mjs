@@ -19,7 +19,7 @@ const docFiles = allFiles.filter((f) => /\.(md|mdc|mjs|js|json)$/.test(f) && !f.
 const skill = read('SKILL.md');
 const frontmatter = skill.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
 
-const OWN = 'NAM|STR|BLK|NAV|LCY|FET|STA|CLG|VAL|ERR|JSC|FSC|FPF|MOB|LOC|VER';
+const OWN = 'NAM|STR|BLK|NAV|LCY|FET|STA|CLG|VAL|ERR|JSC|FSC|FPF|MOB|LOC|VER|FRV';
 const checklist = read('references/review-checklist.md');
 const defined = new Set([...checklist.matchAll(new RegExp(`^\\| ((?:${OWN})-\\d{2}) \\|`, 'gm'))].map((m) => m[1]));
 const lessons = new Set([...read('references/lessons-learned.md').matchAll(/\*\*(FLL-\d{2})/g)].map((m) => m[1]));
